@@ -11,7 +11,7 @@ require (
 	github.com/json-iterator/go v1.1.9
 	github.com/swaggo/gin-swagger v1.2.0
 	github.com/swaggo/swag v1.6.5 // indirect
-	github.com/x554462/go-dao v0.0.0-20200507043852-101e2eb26236
+	github.com/x554462/go-dao v0.0.0-20200508091848-a4d6c2a0d7fc
 	github.com/x554462/go-exception v0.0.0-20200503095221-bb0a12f70675
 	gopkg.in/guregu/null.v3 v3.5.0
 )

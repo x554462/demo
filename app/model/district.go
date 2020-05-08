@@ -2,6 +2,7 @@ package model
 
 import (
 	"database/sql"
+	"github.com/x554462/go-dao"
 	"github.com/x554462/go-dao/excode"
 	"github.com/x554462/go-exception"
 )
@@ -9,6 +10,7 @@ import (
 var DistrictNotFoundError = exception.New("地区未找到", excode.ModelNotFoundError)
 
 type District struct {
+	dao.BaseModel
 	Code         int             `db:"code"`
 	Father       sql.NullInt64   `db:"father"`
 	Name         sql.NullString  `db:"name"`
