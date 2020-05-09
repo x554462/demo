@@ -9,9 +9,12 @@ require (
 	github.com/go-ini/ini v1.55.0
 	github.com/go-redis/redis v6.15.7+incompatible
 	github.com/json-iterator/go v1.1.9
+	github.com/onsi/ginkgo v1.12.0 // indirect
+	github.com/onsi/gomega v1.10.0 // indirect
+	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/swaggo/gin-swagger v1.2.0
 	github.com/swaggo/swag v1.6.5 // indirect
-	github.com/x554462/go-dao v0.0.0-20200508094650-954fc2c6d13b
 	github.com/x554462/go-exception v0.0.0-20200503095221-bb0a12f70675
-	gopkg.in/guregu/null.v3 v3.5.0
+	github.com/x554462/sorm v0.0.0-20200509042109-bf616cc29e95
+	gopkg.in/ini.v1 v1.55.0 // indirect
 )

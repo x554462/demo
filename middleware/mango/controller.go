@@ -9,8 +9,8 @@ import (
 	"github.com/x554462/demo/middleware/mango/library/logging"
 	"github.com/x554462/demo/middleware/mango/library/util"
 	"github.com/x554462/demo/middleware/mango/validator"
-	"github.com/x554462/go-dao"
 	"github.com/x554462/go-exception"
+	"github.com/x554462/sorm"
 	"net/http"
 )
 
@@ -19,7 +19,7 @@ const DefaultKey = "middleware/mango"
 type Controller struct {
 	ginCtx           *gin.Context
 	session          *session
-	daoSession       *dao.Session
+	ormSession       *sorm.Session
 	responseFinished bool
 	firstPanicOffset int
 }
@@ -34,9 +34,9 @@ func New() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		session := newSession(c.Request, c.Writer)
 		defer session.expiry()
-		daoSession := dao.NewSession(c.Request.Context())
-		defer daoSession.Close()
-		ctrl := &Controller{ginCtx: c, daoSession: daoSession, session: session}
+		ormSession := sorm.NewSession(c.Request.Context())
+		defer ormSession.Close()
+		ctrl := &Controller{ginCtx: c, ormSession: ormSession, session: session}
 		defer func() {
 			if v := recover(); v != nil {
 				if err, ok := v.(error); ok {
@@ -70,8 +70,8 @@ func Default(c *gin.Context) *Controller {
 	return c.MustGet(DefaultKey).(*Controller)
 }
 
-func (ctrl *Controller) GetDaoSession() *dao.Session {
-	return ctrl.daoSession
+func (ctrl *Controller) GetOrmSession() *sorm.Session {
+	return ctrl.ormSession
 }
 
 func (ctrl *Controller) GetPar(key string) validator.ValueInterface {

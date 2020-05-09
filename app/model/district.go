@@ -2,16 +2,15 @@ package model
 
 import (
 	"database/sql"
-	"github.com/x554462/go-dao"
-	"github.com/x554462/go-dao/excode"
 	"github.com/x554462/go-exception"
+	"github.com/x554462/sorm"
 )
 
-var DistrictNotFoundError = exception.New("地区未找到", excode.ModelNotFoundError)
+var DistrictNotFoundError = exception.New("地区未找到", sorm.ModelNotFoundError)
 
 type District struct {
-	dao.BaseModel
-	Code         int             `db:"code"`
+	sorm.BaseModel
+	Code         sql.NullInt64   `db:"code,pk"`
 	Father       sql.NullInt64   `db:"father"`
 	Name         sql.NullString  `db:"name"`
 	ShortName    sql.NullString  `db:"short_name"`
@@ -22,10 +21,10 @@ type District struct {
 	Latitude     sql.NullFloat64 `db:"latitude"`
 }
 
-func (this *District) GetIndexValues() []interface{} {
+func (this *District) IndexValues() []interface{} {
 	return []interface{}{this.Code}
 }
 
-func (this *District) InitModelInfo() (tableName string, indexFields []string, notFoundErr exception.ErrorWrapper) {
-	return "district", []string{"code"}, DistrictNotFoundError
+func (this *District) GetNotFoundError() exception.ErrorWrapper {
+	return DistrictNotFoundError
 }

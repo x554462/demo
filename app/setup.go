@@ -2,7 +2,7 @@ package app
 
 import (
 	"github.com/x554462/demo/middleware/mango/library/conf"
-	"github.com/x554462/go-dao/db"
+	"github.com/x554462/sorm/db"
 )
 
 func Setup() {
