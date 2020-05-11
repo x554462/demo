@@ -21,7 +21,8 @@ func TestModel(t *testing.T) {
 
 	orm := sorm.NewSession(context.Background())
 
-	d := orm.Get(&model.District{}).Select(false, 820000).(*model.District)
+	d := orm.GetDao(&model.District{}).Select(false, 820000).(*model.District)
 	fmt.Printf("%v\n", d)
-	fmt.Printf("%#v\n", d)
+	d.Load(false)
+	fmt.Printf("%v\n", d)
 }
