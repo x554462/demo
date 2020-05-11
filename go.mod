@@ -15,6 +15,6 @@ require (
 	github.com/swaggo/gin-swagger v1.2.0
 	github.com/swaggo/swag v1.6.5 // indirect
 	github.com/x554462/go-exception v0.0.0-20200503095221-bb0a12f70675
-	github.com/x554462/sorm v0.0.0-20200511063643-b5a55517994a
+	github.com/x554462/sorm v0.0.0-20200511102524-efe45d8f6d1e
 	gopkg.in/ini.v1 v1.55.0 // indirect
 )
