@@ -6,11 +6,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/x554462/demo/middleware/mango/library/excode"
-	"github.com/x554462/demo/middleware/mango/library/logging"
+	"github.com/x554462/demo/middleware/mango/library/logger"
 	"github.com/x554462/demo/middleware/mango/library/util"
 	"github.com/x554462/demo/middleware/mango/validator"
 	"github.com/x554462/go-exception"
 	"github.com/x554462/sorm"
+	"go.uber.org/zap"
 	"net/http"
 	"strings"
 )
@@ -22,7 +23,6 @@ type Controller struct {
 	session          *session
 	ormSession       *sorm.Session
 	responseFinished bool
-	firstPanicOffset int
 }
 
 type Response struct {
@@ -57,7 +57,7 @@ func New() gin.HandlerFunc {
 								} else {
 									ctrl.Echo(fmt.Sprintf("%d:%s", werr.Code(), werr.Error()))
 								}
-								logging.ErrorWithPrefix(werr.Position(), werr)
+								logger.Error(werr.Error(), zap.String("position", werr.Position()))
 							}
 							return
 						}

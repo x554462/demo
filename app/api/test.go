@@ -10,6 +10,6 @@ import (
 func GetTest(c *gin.Context) {
 	mg := mango.Default(c)
 
-	d := mg.GetOrmSession().GetDao(&model.District{}).Select(false, 1)
+	d := mg.GetOrmSession().GetDao(&model.District{}).Select(false, 1).Load(false)
 	fmt.Println(d)
 }

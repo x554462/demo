@@ -19,6 +19,7 @@ type Server struct {
 	RuntimePath  string
 	LogPath      string
 	LogName      string
+	LogLevel     string
 }
 
 type Database struct {

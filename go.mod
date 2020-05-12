@@ -9,13 +9,14 @@ require (
 	github.com/go-ini/ini v1.55.0
 	github.com/go-redis/redis v6.15.7+incompatible
 	github.com/json-iterator/go v1.1.9
+	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/onsi/ginkgo v1.12.0 // indirect
 	github.com/onsi/gomega v1.10.0 // indirect
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/swaggo/gin-swagger v1.2.0
 	github.com/swaggo/swag v1.6.5 // indirect
-	github.com/x554462/go-exception v0.0.0-20200503095221-bb0a12f70675
-	github.com/x554462/sorm v0.0.0-20200512030225-a557efdc73f5
+	github.com/x554462/go-exception v0.0.0-20200512103510-d281fe12b415
+	github.com/x554462/sorm v0.0.0-20200512103402-cc005729760e
 	go.uber.org/zap v1.15.0
 	gopkg.in/ini.v1 v1.55.0 // indirect
 )
