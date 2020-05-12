@@ -10,6 +10,7 @@ type App struct {
 }
 
 type Server struct {
+	Env          string
 	RunMode      string
 	Addr         string
 	ReadTimeout  time.Duration
@@ -65,4 +66,8 @@ func mapTo(section string, v interface{}) {
 	if err != nil {
 		log.Fatalf("Cfg.MapTo %s err: %v", section, err)
 	}
+}
+
+func IsDev() bool {
+	return ServerConf.Env == "dev"
 }

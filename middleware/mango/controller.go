@@ -12,6 +12,7 @@ import (
 	"github.com/x554462/go-exception"
 	"github.com/x554462/sorm"
 	"net/http"
+	"strings"
 )
 
 const DefaultKey = "middleware/mango"
@@ -32,6 +33,11 @@ type Response struct {
 
 func New() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		// 最后一个方法为中间件时，说明没有匹配到url
+		if strings.Contains(c.HandlerName(), "middleware") {
+			return
+		}
+
 		session := newSession(c.Request, c.Writer)
 		defer session.expiry()
 		ormSession := sorm.NewSession(c.Request.Context())

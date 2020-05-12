@@ -3,6 +3,7 @@ package mango
 import (
 	"fmt"
 	"github.com/x554462/demo/middleware/mango/library/cache"
+	"github.com/x554462/demo/middleware/mango/library/conf"
 	"math/rand"
 	"net/http"
 	"regexp"
@@ -32,7 +33,11 @@ func newSession(request *http.Request, writer http.ResponseWriter) *session {
 	} else {
 		sid = cookie.Value
 	}
-	http.SetCookie(writer, &http.Cookie{Name: sessionName, Value: sid, Path: "/", HttpOnly: true, Secure: false, Expires: time.Now().Add(LifeTime)})
+	if conf.IsDev() {
+		http.SetCookie(writer, &http.Cookie{Name: sessionName, Value: sid, Path: "/", HttpOnly: true, Secure: false, Expires: time.Now().Add(LifeTime)})
+	} else {
+		http.SetCookie(writer, &http.Cookie{Name: sessionName, Value: sid, Path: "/", HttpOnly: true, Secure: true, Expires: time.Now().Add(LifeTime)})
+	}
 	return &session{
 		request:     request,
 		redisClient: cache.NewRedis(RedisDb),
